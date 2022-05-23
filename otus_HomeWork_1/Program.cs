@@ -11,8 +11,8 @@ var list = new List<int>();
 var arrayList = new ArrayList();
 var linkedList = new LinkedList<int>();
 
-#region Collection
 stopwatchAll.Start();
+#region Collection
 Console.WriteLine("-----------------------  Заполнить коллекции, вывести длительность -----------------------");
 
 Console.WriteLine("List");
@@ -33,7 +33,7 @@ Console.WriteLine($"Длительность заполнения коллекц
 
 Console.WriteLine("LinkedList");
 stopwatch.Restart();
-for (var l = 1; l <= x; l++)
+for (var l = 0; l <= x-1; l++)
 {
     linkedList.AddLast(l); 
 }
@@ -42,33 +42,22 @@ Console.WriteLine($"Длительность заполнения коллекц
 
 #region Search
 Console.WriteLine("-----------------------  Найти элемент {0}, вывести длительность  -----------------------", n);
+
+stopwatch.Restart();
 Console.WriteLine("List");
-stopwatch.Restart();
-foreach (var i in list)
-{
-    if (list[i] == n)
-        Console.WriteLine($"Затрачено для поиска элемента {n}: {stopwatch.ElapsedMilliseconds} мс");
-}
+Console.WriteLine($"Затрачено для поиска элемента {list[n]}: {stopwatch.ElapsedMilliseconds} мс");
 
+stopwatch.Restart();
 Console.WriteLine("ArrayList");
+Console.WriteLine($"Затрачено для поиска элемента {arrayList[n]}: {stopwatch.ElapsedMilliseconds} мс");
+
 stopwatch.Restart();
-foreach (var i in arrayList)
-{
-    var k = arrayList[n];
-
-    if(i==k)
-        Console.WriteLine($"Затрачено для поиска элемента {n}: {stopwatch.ElapsedMilliseconds} мс");
-}
-
 Console.WriteLine("LinkedList");
-stopwatch.Restart();
-foreach (var i in linkedList)
-{
-    if(i==n)
-        Console.WriteLine($"Затрачено для поиска элемента {n}: {stopwatch.ElapsedMilliseconds} мс");
-}
-
+var value = linkedList.ElementAt(n);
+Console.WriteLine($"Затрачено для поиска элемента {value}: {stopwatch.ElapsedMilliseconds} мс");
 #endregion Search
+
+#region Remainder
 Console.WriteLine("-----------------------  Найти элемент, который делится без остатка на {0}, вывести длительность  -----------------------", d);
 Console.WriteLine("List");
 stopwatch.Restart();
@@ -105,4 +94,5 @@ stopwatch.Stop();
 Console.WriteLine($"Затрачено милисекунд для поиска операции деления без остатка: {stopwatch.ElapsedMilliseconds}");
 
 stopwatchAll.Stop();
+#endregion
 Console.WriteLine($"Затрачено милисекунд для работы программы: {stopwatchAll.ElapsedMilliseconds}");
